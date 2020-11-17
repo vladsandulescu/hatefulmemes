@@ -32,7 +32,7 @@ from the original repos I have used to get an even better overview.
 In my experience, running somebody else's scripts on your own instance setup rarely works out of the box the first time.
 
 ### Environment
-* Ubuntu 16.04, CUDA 10.2, GCC 5.4.0
+* Ubuntu 16.04, CUDA 9.0, GCC 5.4.0
 * Anaconda 3
 * Python 3.6.x (pandas and jupyterlab needed)
 
@@ -115,7 +115,8 @@ and you will get 4 files, and make sure to put them all into this path
 
 ### 3. UNITER
 For Uniter follow the [original instructions](https://github.com/ChenRocks/UNITER#quick-start), 
-or take the shortcut below, but please always check the original link since the author might have made changes in the meantime.
+more specifically the [pretrained UNITER-large model](https://github.com/ChenRocks/UNITER/blob/master/scripts/download_pretrained.sh), 
+or take the shortcut below to download the pretrained model, but please always check the original link since the author might have made changes in the meantime.
 
 *NOTE*: the path to the pretrained model has to match the path in your training config file.
 
