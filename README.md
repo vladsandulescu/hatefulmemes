@@ -78,7 +78,7 @@ Grab the [HM dataset for phase 2](https://www.drivendata.org/competitions/70/hat
 and place the unzipped files inside a `data` folder, under the project root for example
 (on the same level with `Im2txt`, `py-bottom-up-attention` and `UNITER`).
 
-Grab the [dev_seen_unseen.jsonl LINKME](link) file and place it in the same folder as the other `jsonl` files 
+Grab the [dev_seen_unseen.jsonl](https://drive.google.com/file/d/1ASW0JTYxl9Wazu3GVeqAllaWxndUq1iY/view?usp=sharing) file and place it in the same folder as the other `jsonl` files 
 provided by the organizers.
 
 *NOTE*:
@@ -126,7 +126,8 @@ wget https://convaisharables.blob.core.windows.net/uniter/pretrained/uniter-larg
 ### Running the models
 #### 1. Extracting bounding boxes and image features
 
-You can download the already extracted bboxes + features files [here LINKME]().
+You can download the already extracted bboxes + features files 
+[here](https://drive.google.com/file/d/1XwLCpawhF4AMzJRG7sqG4uPywnL9YrTF/view?usp=sharing).
 Otherwise you can extract them yourself using the following code from `py-bottom-up-attention`. 
 The code extracts the features and places the `tsv` file for all the images in the `imgfeat` folder.
 This will take about one hour to execute (NVidia V100 GPU).
@@ -173,7 +174,8 @@ This is how your `data` folder structure should look like now:
 ```
 
 ### 2. Inferring image captions
-Download the already inferred captions file [here LINKME](LINK) and place it under `data/im2txt` folder.
+Download the already inferred captions file 
+[here](https://drive.google.com/file/d/1VhXKeMS1CNfhUOrVe93QxYMa6BGzZdTX/view?usp=sharing) and place it under `data/im2txt` folder.
 Otherwise, run the following code yourself.
 
 This will take about 4-5 hours (Nvidia V100 GPU), 
@@ -239,7 +241,7 @@ Use the `notebooks/ph2_leaderboard.ipynb` to generate the final leaderboard resu
 output paths first.
 
 *NOTE*:
-All the `csv` test results are available for download from [here LINKME]().
+All the `csv` test results are available for download from [here](https://drive.google.com/file/d/17rI-4w2v5NNgA6t7zlE944xmcIXbbbXv/view?usp=sharing).
 The only difference between the 12 models in the final ensemble in the initialization seed.
 For validating the solution and making sure you replicated everything correctly, you 
 can also randomly pick one seed and train only one model yourself, then compare the results with the 
