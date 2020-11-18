@@ -24,7 +24,7 @@ a single architecture.
 A lot of info up to here, let's take it step by step. If you want to replicate my solution, 
 here's what you need to do.
 
-## Prepare
+### Prepare
 
 Please read the instructions entirely first, before starting the process, to ensure you have
 at last some overview before you start. It is also **very** useful to read the installation instructions
@@ -100,7 +100,7 @@ Or take the shortcut below, but please always check the original link since the 
 wget --no-check-certificate http://nlp.cs.unc.edu/models/faster_rcnn_from_caffe_attr_original.pkl -P ~/.torch/fvcore_cache/models/
 ```
 
-### 2. Im2txt
+#### 2. Im2txt
 For Im2txt follow the [original instructions](https://github.com/HughKu/Im2txt#get-pre-trained-model), 
 or take the shortcut below, but please always check the original link since the author might have made changes in the meantime.
 
@@ -113,7 +113,7 @@ and you will get 4 files, and make sure to put them all into this path
 * checkpoint
 "
 
-### 3. UNITER
+#### 3. UNITER
 For Uniter follow the [original instructions](https://github.com/ChenRocks/UNITER#quick-start), 
 more specifically the [pretrained UNITER-large model](https://github.com/ChenRocks/UNITER/blob/master/scripts/download_pretrained.sh), 
 or take the shortcut below to download the pretrained model, but please always check the original link since the author might have made changes in the meantime.
@@ -131,7 +131,11 @@ You can download the already extracted bboxes + features files
 [here](https://drive.google.com/file/d/1XwLCpawhF4AMzJRG7sqG4uPywnL9YrTF/view?usp=sharing).
 Otherwise you can extract them yourself using the following code from `py-bottom-up-attention`. 
 The code extracts the features and places the `tsv` file for all the images in the `imgfeat` folder.
-This will take about one hour to execute (NVidia V100 GPU).
+This will take about one hour to execute (NVidia V100 GPU). However, note that you will implicitly 
+shuffle the training set by doing so and UNITER's sampler will cause training batches to be different 
+than my training batches. This means that even if you replicate the environment precisely, there might
+still be small differences in results. But since the final step is an average over probabilities, the 
+overall differences on the test_unseen set should be negligible.  
 
 ```bash
 conda activate bua
@@ -174,7 +178,7 @@ This is how your `data` folder structure should look like now:
     └── UNITER
 ```
 
-### 2. Inferring image captions
+#### 2. Inferring image captions
 Download the already inferred captions file 
 [here](https://drive.google.com/file/d/1VhXKeMS1CNfhUOrVe93QxYMa6BGzZdTX/view?usp=sharing) and place it under `data/im2txt` folder.
 Otherwise, run the following code yourself.
@@ -213,10 +217,20 @@ This is how your `data` folder structure should look like now:
     └── UNITER
 ```
 
-### 3. Training UNITER with paired attention
+#### 3. Training UNITER with paired attention
 Training just one UNITER model on both `train+dev_seen_unseen` takes about one hour on 
-a Nvidia V100 GPU. The current implementation does not support distributed training.
+a Nvidia V100 GPU with 32GB RAM. If you only have 16GB RAM on your GPU, 
+you have to modify `train_batch_size` and `gradient_accumulation_steps` to keep the 
+effective batch size the same. 
+E.g. If you reduce the train_batch_size by half to 3328, the gradient_accumulation_steps needs to be doubled to 2.
+Also the current implementation does not support distributed training.
+
+*NOTE*: If you modify the config file however, you will of course get slightly different results, 
+but the overall difference should be negligible when averaging over probabilities output from multiple UNITER models.  
+
 To replicate my leaderboard solution, you need to train 12 UNITER models with different seeds.
+The final probabilities should be the average over the probabilities from the 12 model ensemble.
+The only difference between these UNITER models is simply the seed.
 ```bash
 conda activate uniter
 
@@ -234,15 +248,6 @@ python train_hm.py --config config/ph2_uniter_seeds/train-hm-large-pa-1gpu-hpc_5
 python train_hm.py --config config/ph2_uniter_seeds/train-hm-large-pa-1gpu-hpc_2147483647.json
 ```
 
-The final probabilities should be the average over the probabilities from the 12 model ensemble.
-
 *NOTE*: You should only care about the files `test_results_1140_rank0_final.csv`, the rest are just intermediate results.
 Use the `notebooks/ph2_leaderboard.ipynb` to generate the final leaderboard results, but make sure to change the UNITER 
 output paths first.
-
-*NOTE*:
-All the `csv` test results are available for download from [here](https://drive.google.com/file/d/17rI-4w2v5NNgA6t7zlE944xmcIXbbbXv/view?usp=sharing).
-The only difference between the 12 models in the final ensemble in the initialization seed.
-For validating the solution and making sure you replicated everything correctly, you 
-can also randomly pick one seed and train only one model yourself, then compare the results with the 
-downloaded version.
