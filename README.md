@@ -230,7 +230,7 @@ Also the current implementation does not support distributed training.
 *NOTE*: If you modify the config file however, you will of course get slightly different results, 
 but the overall difference should be negligible when averaging over probabilities output from multiple UNITER models.  
 
-To replicate my leaderboard solution, you need to train 12 UNITER models with different seeds. Why 12? Well, because the number has a certain something to it, there were 12 monkeys after all, or 12 apostles and the examples can go on and on I guess.
+To replicate my leaderboard solution, you need to train 12 UNITER models with different seeds. Why 12? Well, because the number has a certain something to it, there were 12 monkeys, or 12 full lunations of the moon in a year, or the number of years for a full cycle of Jupiter, and the reasons can go on and on I guess.
 The final probabilities should be the average over the probabilities from the 12 model ensemble.
 The only difference between these UNITER models is simply the seed. Training is done as mentioned
 before on both `train+dev_seen_unseen` and every `valid_steps` inference is performed on `test_unseen`, 
