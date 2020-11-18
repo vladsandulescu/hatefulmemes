@@ -47,9 +47,9 @@ class HMDataset(Dataset):
 
         # # Phase 2
         precomputed_boxes = {
-            "train": "data_train_d2_10-100.tsv",
-            "dev": "data_dev_seen_unseen_d2_10-100.tsv",
-            "test": "data_test_unseen_d2_10-100.tsv",
+            "train": "data_train_d2_10-100_vg.tsv",
+            "dev": "data_dev_seen_unseen_d2_10-100_vg.tsv",
+            "test": "data_test_unseen_d2_10-100_vg.tsv",
         }
 
         self.boxes = boxes
@@ -255,9 +255,9 @@ class HMPairedDataset(Dataset):
 
         # Phase 2
         precomputed_boxes = {
-            "train": "data_train_d2_10-100.tsv",
-            "dev": "data_dev_seen_unseen_d2_10-100.tsv",
-            "test": "data_test_unseen_d2_10-100.tsv",
+            "train": "data_train_d2_10-100_vg.tsv",
+            "dev": "data_dev_seen_unseen_d2_10-100_vg.tsv",
+            "test": "data_test_unseen_d2_10-100_vg.tsv",
         }
         df_captions = pd.read_csv(os.path.join(data_path, 'im2txt/df_ph2.csv'))
         df_captions['id'] = df_captions['id'].str.replace('.png', '')
