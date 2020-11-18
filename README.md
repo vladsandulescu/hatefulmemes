@@ -230,7 +230,9 @@ but the overall difference should be negligible when averaging over probabilitie
 
 To replicate my leaderboard solution, you need to train 12 UNITER models with different seeds.
 The final probabilities should be the average over the probabilities from the 12 model ensemble.
-The only difference between these UNITER models is simply the seed.
+The only difference between these UNITER models is simply the seed. Training is done as mentioned
+before on both `train+dev_seen_unseen` and every `valid_steps` inference is performed on `test_unseen`, 
+writing the results to a csv file.
 ```bash
 conda activate uniter
 
