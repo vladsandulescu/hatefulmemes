@@ -146,12 +146,12 @@ python demo/detectron2_mscoco_proposal_maxnms_hm.py
 Split up the `tsv` file into each of the sets, by joining with the `jsonl` files. This will 
 create another set of `tsv` files, which will be ingested by UNITER.
 ```bash
-python demo/hm.py --split img --split_json_file train.jsonl --d2_file_suffix d2_10-100 --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
-python demo/hm.py --split img --split_json_file dev_seen.jsonl --d2_file_suffix d2_10-100 --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
-python demo/hm.py --split img --split_json_file dev_unseen.jsonl --d2_file_suffix d2_10-100 --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
-python demo/hm.py --split img --split_json_file dev_seen_unseen.jsonl --d2_file_suffix d2_10-100 --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
-python demo/hm.py --split img --split_json_file test_seen.jsonl --d2_file_suffix d2_10-100 --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
-python demo/hm.py --split img --split_json_file test_unseen.jsonl --d2_file_suffix d2_10-100 --data_path /path/to/data/ --output_path /path/to/data/imgfeat/ 
+python demo/hm.py --split img --split_json_file train.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
+python demo/hm.py --split img --split_json_file dev_seen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
+python demo/hm.py --split img --split_json_file dev_unseen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
+python demo/hm.py --split img --split_json_file dev_seen_unseen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
+python demo/hm.py --split img --split_json_file test_seen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
+python demo/hm.py --split img --split_json_file test_unseen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/ 
 ```
 
 This is how your `data` folder structure should look like now:
@@ -164,10 +164,10 @@ This is how your `data` folder structure should look like now:
     │   ├── dev_unseen.jsonl
     │   ├── dev_seen_unseen.jsonl
     │   ├── test_unseen.jsonl
-    │   ├── imgfeat/d2_10-100/tsv/img.tsv
-    │   ├── data_train_d2_10-100.tsv
-    │   ├── data_dev_seen_unseen_d2_10-100.tsv
-    │   ├── data_test_unseen_d2_10-100.tsv
+    │   ├── imgfeat/d2_10-100_vg/tsv/img.tsv
+    │   ├── data_train_d2_10-100_vg.tsv
+    │   ├── data_dev_seen_unseen_d2_10-100_vg.tsv
+    │   ├── data_test_unseen_d2_10-100_vg.tsv
     │   ├── ...
     ├── Im2txt
     ├── py-bottom-up-attention
@@ -179,8 +179,7 @@ Download the already inferred captions file
 [here](https://drive.google.com/file/d/1VhXKeMS1CNfhUOrVe93QxYMa6BGzZdTX/view?usp=sharing) and place it under `data/im2txt` folder.
 Otherwise, run the following code yourself.
 
-This will take about 4-5 hours (Nvidia V100 GPU), 
-but could probably be run also on something less powerful or even a CPU, since it only does inference.
+This will take about one hour on a multicore CPU only machine. 
 
 ```bash
 conda activate im2txt
@@ -204,10 +203,10 @@ This is how your `data` folder structure should look like now:
     │   ├── dev_unseen.jsonl
     │   ├── dev_seen_unseen.jsonl
     │   ├── test_unseen.jsonl
-    │   ├── imgfeat/d2_10-100/tsv/img.tsv
-    │   ├── data_train_d2_10-100.tsv
-    │   ├── data_dev_seen_unseen_d2_10-100.tsv
-    │   ├── data_test_unseen_d2_10-100.tsv
+    │   ├── imgfeat/d2_10-100_vg/tsv/img.tsv
+    │   ├── data_train_d2_10-100_vg.tsv
+    │   ├── data_dev_seen_unseen_d2_10-100_vg.tsv
+    │   ├── data_test_unseen_d2_10-100_vg.tsv
     │   ├── ...
     ├── Im2txt
     ├── py-bottom-up-attention
