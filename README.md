@@ -151,10 +151,7 @@ Split up the `tsv` file into each of the sets, by joining with the `jsonl` files
 create another set of `tsv` files, which will be ingested by UNITER.
 ```bash
 python demo/hm.py --split img --split_json_file train.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
-python demo/hm.py --split img --split_json_file dev_seen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
-python demo/hm.py --split img --split_json_file dev_unseen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
 python demo/hm.py --split img --split_json_file dev_seen_unseen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
-python demo/hm.py --split img --split_json_file test_seen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/
 python demo/hm.py --split img --split_json_file test_unseen.jsonl --d2_file_suffix d2_10-100_vg --data_path /path/to/data/ --output_path /path/to/data/imgfeat/ 
 ```
 
