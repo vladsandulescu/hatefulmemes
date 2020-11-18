@@ -17,6 +17,9 @@ work which in itself is a pytorch adaptation of the original
 [bottom-up-attention](https://github.com/peteanderson80/bottom-up-attention) approach using
 caffe.
 
+In a nutshell, the paired attention approach was used in the UNITER paper to pair images for the NLVR competition. There your model input was a a pair 
+[[img1, txt], [img2, txt]], so repeating the text for each pair. I basically just turned that on its head and did [[img, txt1], [img, txt2]] where the first text was the supplied meme text and the second text was the caption from running inference on the images using the Im2txt code. 
+
 The overall goal was to get familiar with the multimodal SOTA models out there 
 and not focus too much on fancier ensembling or stacking. I find it much more fun to try to improve 
 a single architecture. I also haven't spent much time tuning the hyperparameters, 
