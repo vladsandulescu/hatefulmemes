@@ -9,8 +9,7 @@ which I have adapted for this competition. I have customized the paired-attentio
 approach from the UNITER paper to include image captions
 inferred from the [Im2txt implemention](https://github.com/HughKu/Im2txt) of the 
 [Show and Tell: Lessons learned from the 2015 MSCOCO Image Captioning Challenge](http://arxiv.org/abs/1609.06647) 
-paper. You can say this was my original contribution to the competition, albeit it didn't improve my results by a lot 
-(around 1.2% for the AUC). However I really liked the simplicity of it. I extracted ROI boxes and 
+paper. Albeit it didn't improve my results by a lot (around 1% for the AUC). However I really liked the simplicity of it. I extracted ROI boxes and 
 image features by adapting the 
 [Bottom-up Attention with Detectron2](https://github.com/airsplay/py-bottom-up-attention) 
 work which in itself is a pytorch adaptation of the original 
