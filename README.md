@@ -23,8 +23,7 @@ In a nutshell, the paired attention approach was used in the UNITER paper to pai
 The overall goal was to get familiar with the multimodal SOTA models out there 
 and not focus too much on fancier ensembling or stacking. I find it much more fun to try to improve 
 a single architecture. I also haven't spent much time tuning the hyperparameters, 
-you will notice they are quite similar to the ones the UNITER authors used. I spent the rest of my time also adapting VL-BERT, VLP and LXMERT with and without the paired attention part. Actually my second best solution in phase 2 was a simple average from a single VL-BERT Large plus a single UNITER Large with paired attention. 
-I leave that for another blog post as they say.
+you will notice they are quite similar to the ones the UNITER authors used.
 
 A lot of info up to here, let's take it step by step. If you want to replicate my solution, 
 here's what you need to do.
