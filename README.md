@@ -1,7 +1,21 @@
 # The Hateful Memes challenge
 
-## Introduction
+## Post-competition findings
+While I was cleaning up the code and documenting my best leaderboard solution I discovered
+I had made a mistake when training the model. Specifically the model was being trained 
+after the first epoch in eval mode only, i.e. no dropout and batchnorm.
+This is obviously a mistake and you shouldn't do it. Turns out that a single UNITER
+model might be on par with my best leaderboard solution involving 12 models with paired-attention, 
+which seems to have little to no effect. As a consequence I expect now an ensemble of plain UNITER models to outperform
+my best leaderboard solution. Imagine my unpleasant surprise finding this after the competition ended.
+Oh well, so if you want to do it the right way, make sure to include 
+`model.train()` [here](https://github.com/vladsandulescu/hatefulmemes/blob/c966336ddbff0a938a8e1632baa7032c6e84f050/UNITER/train_hm.py#L350),
+before returning the test results, similar to the validation part.  
 
+*NOTE*: The rest of the documentation below reflects the state of the solution until the competition ended
+and since the organizers need to reproduce my solution, I will not push the post-competition fix just yet.
+
+## Introduction
 My best scoring solution to the [Hateful Memes: Phase 2](https://www.drivendata.org/competitions/70/hateful-memes-phase-2/) 
 challenge comprises of an ensemble of a single UNITER model architecture (average over probabilities) 
 [[paper]](https://arxiv.org/abs/1909.11740) [[code]](https://github.com/ChenRocks/UNITER), 
@@ -255,3 +269,11 @@ python train_hm.py --config config/ph2_uniter_seeds/train-hm-large-pa-1gpu-hpc_2
 *NOTE*: You should only care about the files `test_results_1140_rank0_final.csv`, the rest are just intermediate results.
 Use the `notebooks/ph2_leaderboard.ipynb` to generate the final leaderboard results, but make sure to change the UNITER 
 output paths first.
+
+#### 4. Running inference only to get predictions
+```bash
+python inf_hm.py --root_path ./ --dataset_path /path/to/data \
+    --test_image_set test --train_dir /path/to/train_dir \
+    --ckpt 1140 --output_dir /path/to/output \
+    --fp16
+```
