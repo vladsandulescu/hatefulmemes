@@ -269,6 +269,8 @@ Use the `notebooks/ph2_leaderboard.ipynb` to generate the final leaderboard resu
 output paths first.
 
 #### 4. Running inference only to get predictions
+You can download the [checkpoints](https://drive.google.com/file/d/1DqcmpxABkJjdYq3tF7VwtRgRs6236993/view?usp=sharing) for all of the 12 models and then just run inference to get the predictions without training the models.
+
 ```bash
 python inf_hm.py --root_path ./ --dataset_path /path/to/data \
     --test_image_set test --train_dir /path/to/train_dir \
