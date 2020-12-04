@@ -270,7 +270,34 @@ output paths first.
 
 #### 4. Running inference to get predictions
 You can download the [checkpoints](https://drive.google.com/file/d/18xuRFdlDNrUyXKA1AzENai7Z0h_rM3aF/view?usp=sharing) for all of the 12 models and then just run inference to get the predictions without training the models.
+In order to run inference on the test set, you need to have two json files in place next to a checkpoint.
+`/path/to/train_dir/log/model.json` and `/path/to/train_dir/log/hps.json`. These should match
+the default pretrained UNITER-large `config/uniter-large.json` file and
+your UNITER training file respectively,
+e.g. `config/ph2_uniter_seeds/train-hm-large-pa-1gpu-hpc_0.json` for the model using seed 0.
+You can simply copy and rename the two files to `model.json` and `hps.json`, but do keep in mind the different seed from each checkpoint. 
 
+*NOTE*: If you don't download the checkpoints and prefer to train the model yourself, you don't
+need to copy these files, since the training part will already copy them in the correct folder.
+
+The structure of the checkpoint and log folders should look like this:
+```bash
+    ├── seed_0
+    │   ├── ckpt
+    │   │   ├── model_step_1140.pt
+    │   ├── log
+    │   │   ├── model.json (*NOTE* content matches config/uniter-large.json)
+    │   │   ├── hps.json (*NOTE* content matches config/ph2_uniter_seeds/train-hm-large-pa-1gpu-hpc_0.json)
+    │   ├── ...
+    ├── seed_24
+    │   ├── ckpt
+    │   │   ├── model_step_1140.pt
+    │   ├── log
+    │   │   ├── model.json (*NOTE* content matches config/uniter-large.json)
+    │   │   ├── hps.json (*NOTE* content matches config/ph2_uniter_seeds/train-hm-large-pa-1gpu-hpc_24.json)
+    ├── ...
+```
+Run inference on the `test_unseen` set.
 ```bash
 python inf_hm.py --root_path ./ --dataset_path /path/to/data \
     --test_image_set test --train_dir /path/to/train_dir \
