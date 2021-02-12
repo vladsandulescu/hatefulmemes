@@ -308,9 +308,11 @@ python inf_hm.py --root_path ./ --dataset_path /path/to/data \
 ## Citation
 If you find this code useful for your research, please consider citing:
 
+```
 @article{sandulescu2020detecting,
   title={Detecting Hateful Memes Using a Multimodal Deep Ensemble},
   author={Sandulescu, Vlad},
   journal={arXiv preprint arXiv:2012.13235},
   year={2020}
 }
+```
