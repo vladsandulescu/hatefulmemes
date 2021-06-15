@@ -1,5 +1,8 @@
 # The Hateful Memes challenge
 
+## Moving of the GDrive files (checkpoints, data)
+I have moved the 4 archives containing checkpoints and other intermediate data to https://drive.google.com/drive/folders/1uPukz8AZIcFOgaajGfeJYuQfl9PMYJU9?usp=sharing. As a result, the rest of the Gdrive links below will not work and you can download all of the archives from the above link.
+
 ## Post-competition findings
 While I was cleaning up the code and documenting my best leaderboard solution I discovered
 I had made a mistake when training the model. Specifically the model was being trained 
